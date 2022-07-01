@@ -1,0 +1,59 @@
+{
+  "root": true, // If true, stop climbing file tree looking for more eslintrc files.
+  "extends": [
+    "react-app",
+    "plugin:import/recommended",
+    "plugin:jsx-a11y/recommended"
+    // "plugin:react/recommended" // 1/9/2022: disabled because rules emit too many errors instead of warnings, preventing build. Reenable when there is time to address errors.
+  ],
+  "parserOptions": {
+    "project": "tsconfig.json" // Note: Must be overriden by project to support typing rules
+  },
+  "plugins": ["functional", "import", "prefer-arrow-functions"],
+  "rules": {
+    /* Base eslint */
+    "complexity": "warn",
+    "max-lines": ["warn", 300],
+    "max-lines-per-function": ["warn", 100],
+    "no-param-reassign": "warn",
+    "no-var": "warn",
+    "prefer-const": "warn",
+    "prefer-object-spread": "warn",
+    "require-await": "warn",
+
+    /* Functional Plugin */
+    "functional/prefer-readonly-type": "warn",
+    "functional/no-let": "warn",
+
+    /* Import Plugin */
+    "import/named": "off", // 1/7/2022: disabled because it was producing false positives
+    "import/no-unresolved": "off", // 1/7/2022: disabled because it was not handling psuedo absolutle paths (e.g. _atoms, _molecules) correctly
+    "import/no-anonymous-default-export": "warn",
+    "import/no-cycle": "warn",
+    "import/no-self-import": "warn",
+
+    /* JSX Accessibility Plugin */
+    "jsx-a11y/anchor-is-valid": "warn", // overriding recommend error
+    "jsx-a11y/click-events-have-key-events": "warn", // overriding recommend error
+    "jsx-a11y/no-static-element-interactions": "warn", // overriding recommend error
+
+    /* Prefer Arrow Plugin */
+    "prefer-arrow-functions/prefer-arrow-functions": "warn",
+
+    /* React */
+    "react/jsx-key": "warn",
+    "react/no-array-index-key": "warn"
+  },
+  "overrides": [
+    // Note: Comment Typescript aware rules if IDE is running slow
+    // {
+    //   /* Typescript */
+    //   "files": ["*.ts", "*.tsx"],
+    //   "rules": {
+    //     "@typescript-eslint/no-explicit-any": "warn",
+    //     "@typescript-eslint/prefer-readonly": "warn",
+    //     "@typescript-eslint/switch-exhaustiveness-check": "warn"
+    //   }
+    // }
+  ]
+}

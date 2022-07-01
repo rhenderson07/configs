@@ -1,0 +1,47 @@
+[alias]
+	br = branch
+	ch = checkout
+	co = commit
+	clearMerged = branch --merged
+	dump = cat-file -p
+	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+	st = status
+	type = cat-file -t
+	uncommit = reset --soft head^
+	tagclean = ! git tag -l | grep -- -merge | xargs git tag -d
+	
+	# VSTS CLI
+	create-pull-request-for-develop = "!f() { exec vsts code pr create --auto-complete --delete-source-branch --squash -t develop \"$@\";};f"
+[color]
+	ui = auto
+[core]
+	autocrlf = true
+	#excludesfile = C:\\path\\to\\global\\documents\\gitignore_global.txt
+	editor = \"C:/windows/system32/notepad.exe\"
+[diff]
+	tool = p4
+[difftool]
+	prompt = false
+[difftool "p4"]
+	path = C:/Program Files/Perforce/p4merge.exe
+	cmd = \"C:/Program Files/Perforce/p4merge.exe\" \"$LOCAL\" \"$REMOTE\"	
+[difftool "sourcetree"]
+	cmd = '' \"$LOCAL\" \"$REMOTE\"
+[merge]
+	keepBackup = false
+	tool = p4	
+[mergetool]
+	keepBackup = false
+	prompt = false
+	trustExitCode = true
+[mergetool "p4"]
+	path = C:/Program Files/Perforce/p4merge.exe
+	cmd = \"C:/Program Files/Perforce/p4merge.exe\" \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
+[mergetool "sourcetree"]
+	cmd = "'' "
+	trustExitCode = true
+[push]
+	default = current
+[user]
+	name = phenderson
+	# email = myemail@example.com
